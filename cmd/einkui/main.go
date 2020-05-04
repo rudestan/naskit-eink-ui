@@ -80,8 +80,6 @@ func gracefullShutdown(epaper *epd.Epaper)  {
 		log.Fatal(err)
 	}
 
-	epaper.Clear(epd.BgColorWhite)
-	epaper.Reset()
 	epaper.Sleep()
 }
 
@@ -163,6 +161,27 @@ func createUi(debugMode bool, noFan bool) *nasui.NasUI {
 							uptimeStrs := strings.Split(string(out), ",")
 
 							return ctx.DefaultUI.MenuActionTextPage("Menu: uptime", uptimeStrs), nil
+						},
+					},
+				},
+				{
+					Label: "Clear screen",
+					Page: &nasui.Page{
+						RefreshInterval: 0,
+						Display: func(ctx *nasui.Context) (*image.RGBA, error) {
+							err := ctx.NasUI.Epd.InitFull()
+							if err != nil {
+								return nil, err
+							}
+
+							for i:=0;i < 3;i++ {
+								ctx.NasUI.Epd.Reset()
+								ctx.NasUI.Epd.Clear(epd.BgColorWhite)
+								time.Sleep(4 * time.Second)
+								ctx.NasUI.Epd.Clear(epd.BgColorWhite)
+							}
+
+							return ctx.DefaultUI.MenuActionTextPage("Menu: clear screen", []string{"cleared"}), nil
 						},
 					},
 				},

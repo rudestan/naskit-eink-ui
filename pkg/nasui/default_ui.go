@@ -7,6 +7,7 @@ import (
 	"github.com/llgcode/draw2d"
 	"github.com/llgcode/draw2d/draw2dimg"
 	"image"
+	"image/color"
 	"image/png"
 	"log"
 	"math"
@@ -132,7 +133,7 @@ func (de *DefaultUI) MenuPage(ctx *Context) (*image.RGBA, error) {
 
 
 	gc.SetFillColor(image.Black)
-	drawRect(gc, 0, 18, float64(de.width), 1)
+	drawRect(gc, 0, 18, float64(de.width), 2)
 	gc.Fill()
 
 	for n := 1; n <= itemsPerPage; n++ {
@@ -150,7 +151,7 @@ func (de *DefaultUI) MenuPage(ctx *Context) (*image.RGBA, error) {
 			gc.Fill()
 
 			gc.SetFillColor(image.White)
-			drawRect(gc, 9, float64(n * 30 + space - 1), float64(de.width-18), 26)
+			drawRect(gc, 10, float64(n * 30 + space), float64(de.width-20), 24)
 			gc.Fill()
 
 			gc.SetFillColor(image.Black)
@@ -165,7 +166,7 @@ func (de *DefaultUI) MenuPage(ctx *Context) (*image.RGBA, error) {
 
 func (de *DefaultUI) DiscInfoOneDisc(label string, bgLabel string, di *DiskInfo) (*image.RGBA, error)  {
 	dest := image.NewRGBA(image.Rect(0, 0, de.width, de.height))
-	gc := de.newClearGC(dest)
+	gc := de.newClearGC(dest, image.White)
 
 	de.AddPageHeader(gc, label, bgLabel)
 
@@ -217,7 +218,7 @@ func (de *DefaultUI) DiscInfoOneDisc(label string, bgLabel string, di *DiskInfo)
 
 func (de *DefaultUI) DiscInfoTwoDiscs(label string, bgLabel string, dis []*DiskInfo) (*image.RGBA, error)  {
 	dest := image.NewRGBA(image.Rect(0, 0, de.width, de.height))
-	gc := de.newClearGC(dest)
+	gc := de.newClearGC(dest, image.White)
 
 	de.AddPageHeader(gc, label, bgLabel)
 
@@ -278,7 +279,7 @@ func (de *DefaultUI) DiscInfoTwoDiscs(label string, bgLabel string, dis []*DiskI
 
 func (de *DefaultUI) ResourcesInfo(label string, bgLabel string, usageInfo *UsageInfo) (*image.RGBA, error) {
 	dest := image.NewRGBA(image.Rect(0, 0, de.width, de.height))
-	gc := de.newClearGC(dest)
+	gc := de.newClearGC(dest, image.White)
 
 	de.AddPageHeader(gc, label, bgLabel)
 
@@ -316,10 +317,10 @@ func (de *DefaultUI) ResourcesInfo(label string, bgLabel string, usageInfo *Usag
 	return dest, nil
 }
 
-func (de *DefaultUI) newClearGC(img *image.RGBA) *draw2dimg.GraphicContext  {
+func (de *DefaultUI) newClearGC(img *image.RGBA, c color.Color) *draw2dimg.GraphicContext  {
 	gc := draw2dimg.NewGraphicContext(img)
 
-	gc.SetFillColor(image.White)
+	gc.SetFillColor(c)
 	drawRect(gc, 0, 0, float64(de.width), float64(de.height))
 	gc.Fill()
 
@@ -346,7 +347,7 @@ func (de *DefaultUI) AddPageHeader(gc *draw2dimg.GraphicContext, label string, b
 	gc.FillStringAt(bgLabel, 116, row)
 
 	gc.SetFillColor(image.Black)
-	drawRect(gc, 0, row + 4, float64(de.width), 1)
+	drawRect(gc, 0, row + 4, float64(de.width), 2)
 	gc.Fill()
 }
 

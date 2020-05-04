@@ -196,6 +196,12 @@ func (p *board) writeSPI(b ...byte) {
 }
 
 func (p *board) cleanup() {
+	defer func() {
+		p.connected = false
+	}()
+
+	p.fanOff()
+	p.ledOff()
 	p.writeRST(false)
 	p.writeDC(false)
 
