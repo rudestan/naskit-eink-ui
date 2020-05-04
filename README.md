@@ -32,10 +32,10 @@ once your rPI rebooted. For example add a start command line to `/etc/rc.local`.
 
 |           | | 
 |---------------|---------|
-| ![alt text](https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/two_disks.png "Two disks Page") | Two disks info page. Will be shown if at least two disks specified with `-d` and no `-ng` flag.| 
-| ![alt text](https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/single_disk.png "Single disks Page") | Single disk page is used in case  `-ng` flag specified or for odd numbers of disks.|
-| ![alt text](https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/load.png "Load info Page") | CPU load, temperature and RAM usage information.|
-| ![alt text](https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/menu_p1.png "Menu Page 1") | Menu page (press "ok" button to open). From here you can reboot, power off rPI or check uptime info etc. On the top right corner you can see how many pages the menu has.|
+| <img src="https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/two_disks.png" width="250"> | Two disks info page. Will be shown if at least two disks specified with `-d` and no `-ng` flag.| 
+| <img src="https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/single_disk.png" width="250"> | Single disk page is used in case  `-ng` flag specified or for odd numbers of disks.|
+| <img src="https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/load.png" width="250"> | CPU load, temperature and RAM usage information.|
+| <img src="https://github.com/rudestan/naskit-eink-ui/raw/master/screenshots/menu.png" width="250"> | Menu page (press "ok" button to open). From here you can reboot, power off rPI or check uptime info etc. On the top right corner you can see how many pages the menu has.|
 
 #### Notes and Issues
 
